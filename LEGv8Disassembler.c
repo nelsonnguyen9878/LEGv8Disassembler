@@ -14,15 +14,17 @@
 
 // LIBRARIES
 #include <stdio.h>
+#include <string.h>
 
 // PROTOTYPES
 void EnterInstruction();
 
 
-
+const int LIST_SIZE = 1000;
 
 // beginning of main()
 int main() {
+    EnterInstruction();
 
 
 
@@ -32,7 +34,34 @@ int main() {
 // end of main()
 
 void EnterInstruction() {
-    
+
+    char user_input;
+    char bit_instruction[LIST_SIZE];
+
+
+    FILE* fptr;
+    fptr = fopen("instruction.txt" , "w");
+
+    do{
+        printf("Please enter a 32-bit instruction: ");
+        scanf("%s", bit_instruction[i])
+
+    }(while)
+
+    if(fptr != NULL) {
+        do {
+            scanf("%s", &user_input);
+            fputs(user_input, fptr);
+        } while(user_input !='n');
+    }
+
+
+
+    if (fptr == NULL) {
+        printf("File did not open successfully");
+    }
+
+    fclose(fptr);
 
 
 }
