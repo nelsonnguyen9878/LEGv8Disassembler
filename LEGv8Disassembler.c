@@ -20,8 +20,8 @@
 // PROTOTYPES
 void EnterInstruction();
 
-
-const int LIST_SIZE = 1000;
+// global variable
+const int CHAR_SIZE = 1000;
 
 
 // beginning of main()
@@ -35,52 +35,49 @@ int main() {
 }
 // end of main()
 
+
+// beginning of EnterInstruction()
 void EnterInstruction() {
 
-    char user_input[LIST_SIZE];
-    char bit_instruction[LIST_SIZE];
-
-
-
-
-    FILE* fptr;
-    fptr = fopen("instruction.txt" , "w");
-
-    /*
-    do{
-
-        scanf("%s", bit_instruction[i])
-
-    }(while)
-     */
-
+    //  varaibles
+    char bit_instruction[CHAR_SIZE]; // bit string with character limit of 1000
     int choice;
-    if(fptr != NULL) {
 
+    // declaring file 
+    FILE* fptr;
+    fptr = fopen("instruction.txt" , "w"); // uses "w" to write 
+
+
+   // file is opened and no errors are reached
+   // grabs user instruction until user stops
+    if(fptr != NULL) {
+        // do while loop to take in instructions
         do {
 
+            // user_input
             printf("Please enter a 32-bit instruction: ");
-            fgets(user_input, LIST_SIZE, stdin);
-            fputs(user_input, fptr);
+            fflush(stdin);
+            fgets(bit_instruction, CHAR_SIZE, stdin);
+            fputs(bit_instruction, fptr);
 
-
+            // choice validation
             printf("Would you like to enter another bit instruction?(0 for no, 1 for yes): ");
             scanf("%d", &choice);
-            while( choice != 0 && choice != 1) {
-                printf("That is not a valid choice.");
+            while( choice != 0 && choice != 1) { // while loop until conditions are met
+                printf("That is not a valid choice.\n");
                 printf("Would you like to enter another bit instruction?(0 for no, 1 for yes): ");
                 scanf("%d", &choice);
             }
-        }while( choice != 0);
+
+        }while( choice != 0); // breaks out of loop if user input is 0
     }
-
-
-
+    
+    // file message if not opened succesfully
     if (fptr == NULL) {
         printf("File did not open successfully");
     }
 
+    // close file
     fclose(fptr);
-
-
 }
+// end of EnterInstruction()
